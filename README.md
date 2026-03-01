@@ -1,105 +1,65 @@
-ProseVue — A Modern Tiptap Editor for Vue 3 (TypeScript) ✨
+ProseVue — Tiptap Editor for Vue 3
 
-I wanted a Notion-level editor in Vue…
-without installing a giant ecosystem, fighting configs, or writing 1,000 lines of glue code.
-So I built one.
+A modern, fully controlled Tiptap v2 editor component for Vue 3 built with TypeScript and Tailwind CSS.
 
-ProseVue is a high-performance WYSIWYG editor component powered by Tiptap v2, styled with Tailwind CSS, and written in strict TypeScript — designed to feel like a premium product while remaining a drop-in Vue component.
-
-No packages.
-No wrappers.
-No magic.
-
-Just copy → install deps → ship.
+ProseVue provides a production-ready rich text editor with a clean architecture, strong typing, and customizable UI — without introducing an additional package layer or framework lock-in.
 
 ⸻
 
+Overview
 
-👉 Live Demo: https://prose-vue-tiptap-editor.vercel.app/
-👉 JavaScript Version: https://github.com/Joshualeexy/proseVue-tiptap-editor
+ProseVue is designed as a drop-in editor component that integrates naturally with Vue applications.
 
-⸻
+Instead of shipping as an opaque dependency, the editor is intended to be copied into your project, giving full ownership over behavior, styling, and extensions.
 
-🧠 The Story
-
-Most Vue editors fall into one of two categories:
-	•	❌ Too basic
-	•	❌ Too heavy and opinionated
-
-I wanted something different:
-	•	Fully controlled by the parent (v-model)
-	•	Beautiful by default
-	•	Strictly typed
-	•	Production-ready
-	•	Easy enough to copy into any project
-
-So instead of publishing another dependency, I built a standalone editor component you actually understand.
-
-You own the code.
-You customize everything.
-No lock-in.
+Goals
+	•	Predictable Vue reactivity (v-model)
+	•	Strong TypeScript support
+	•	Minimal setup
+	•	Fully customizable UI
+	•	Production-ready defaults
 
 ⸻
 
-⚡ What Makes ProseVue Different
-
-🧩 A Component — Not a Package
-
-This is intentional.
-
-You copy the editor into your project instead of depending on a black box.
-
-That means:
-	•	Full control
-	•	Zero vendor friction
-	•	Easy customization
-	•	No version conflicts
+Demo & Source
+	•	Live Demo
+https://prose-vue-tiptap-editor.vercel.app/
+	•	Repository
+https://github.com/Joshualeexy/proseVue-tiptap-editor
 
 ⸻
 
-🔄 Fully Controlled Editor (Real Vue Pattern)
+Features
 
-The parent owns state:
-
-<TipTapEditor v-model="content" />
-
-The editor behaves like a native Vue input:
-	•	reactive
-	•	predictable
-	•	composable
-	•	TypeScript-safe
-
-⸻
-
-🎨 Premium UX (Not Just Functional)
-
-Built with product-level polish:
-	•	Glassmorphic sticky toolbar
-	•	Floating & bubble menus
-	•	Micro-interaction feedback
-	•	Dark mode support
-	•	Dynamic accent theming
-
-Feels closer to Notion / Google Docs than a typical OSS editor.
-
-⸻
-
-🛠 Powerful Editing Features
+Editing Capabilities
+	•	Text formatting (bold, italic, underline, highlight)
+	•	Headings & typography enhancements
+	•	Task lists
 	•	Tables with resizable columns
-	•	Task lists ✅
-	•	YouTube embeds
-	•	Link & image popovers (no browser prompts)
-	•	Typography engine (smart symbols)
-	•	Subscript / Superscript
-	•	Text alignment & formatting
-	•	Character limits + progress tracking
-	•	HTML + ProseMirror JSON output
+	•	Image and YouTube embeds
+	•	Links with custom popovers
+	•	Text alignment
+	•	Subscript / superscript
+	•	Horizontal rules
+	•	Smart typography transformations
+
+UX Features
+	•	Sticky toolbar
+	•	Floating & bubble menus
+	•	Dark mode support
+	•	Dynamic accent color theming
+	•	Character limit with progress tracking
+	•	Placeholder support
+
+Output Formats
+	•	HTML output
+	•	ProseMirror JSON output
 
 ⸻
 
-🚀 Zero-Config Setup
+Installation
 
-1️⃣ Install dependencies
+Install required Tiptap dependencies:
 
 npm install @tiptap/vue-3 @tiptap/starter-kit \
 @tiptap/extension-underline \
@@ -129,7 +89,7 @@ npm install @tiptap/vue-3 @tiptap/starter-kit \
 
 ⸻
 
-2️⃣ Register FontAwesome Icons
+FontAwesome Setup
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -141,7 +101,7 @@ app.component("font-awesome-icon", FontAwesomeIcon);
 
 ⸻
 
-3️⃣ Use It
+Usage
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -154,42 +114,56 @@ const content = ref('<h1>Hello world</h1>')
   <TipTapEditor v-model="content" />
 </template>
 
-Done.
 
 ⸻
 
-🎛 Props
+Props
 
 Prop	Type	Description
-v-model	string	HTML output
-v-model:json	JSONContent	Structured editor data
-accentColor	string	Theme color
+v-model	string	HTML editor output
+v-model:json	JSONContent	ProseMirror structured output
+accentColor	string	Editor theme color
 limit	number	Character limit
-placeholder	string	Editor hint text
+placeholder	string	Placeholder text
 
 
 ⸻
 
-🧩 Philosophy
+Architecture
 
-ProseVue is built around a simple idea:
+ProseVue follows a controlled editor pattern:
+	•	Parent component owns state
+	•	Editor emits updates
+	•	Vue reactivity remains the single source of truth
 
-Open source should feel premium.
+<TipTapEditor v-model="content" />
 
-You shouldn’t need enterprise software to get enterprise UX.
-
-⸻
-
-⭐ If You Like It
-	•	Star the repo
-	•	Fork it
-	•	Improve it
-	•	Build something beautiful
+This ensures predictable state management and easy persistence.
 
 ⸻
 
-📜 License
+Customization
 
-MIT — free for personal & commercial use.
+Since the editor is included directly in your project:
+	•	Modify extensions freely
+	•	Change toolbar layout
+	•	Replace UI components
+	•	Extend commands
+	•	Adjust styling without overrides
+
+No abstraction layer or vendor lock-in is introduced.
 
 ⸻
+
+Philosophy
+
+ProseVue prioritizes:
+	•	Transparency over abstraction
+	•	Control over convenience packages
+	•	Production UX with open tooling
+
+⸻
+
+License
+
+MIT — free for personal and commercial use.
